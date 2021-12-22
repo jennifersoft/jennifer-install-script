@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+    server_cont:
+        build:
+            context: ../
+            dockerfile: ./docker/dockerfiles/server.dockerfile
+        container_name: deploy_test_server
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        network_mode: host

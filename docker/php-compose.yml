@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+    agent_cont:
+        build:
+            context: ../
+            dockerfile: ./docker/dockerfiles/agent.php.dockerfile
+        container_name: deploy_test_agent
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        volumes:
+            # php & web server configuration
+            - ../conf/nginx-php.conf:/etc/nginx/sites-enabled/nginx-php.conf
+        ports:
+            - 23080:80
+        networks:
+            - deploy_test_zone
+
+networks:
+    deploy_test_zone:
+        driver: bridge

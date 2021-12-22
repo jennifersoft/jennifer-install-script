@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+    agent_cont:
+        build:
+            context: ../
+            dockerfile: ./docker/dockerfiles/agent.java.dockerfile
+        container_name: deploy_test_agent
+        stdin_open: true # docker run -i
+        tty: true        # docker run -t
+        ports:
+            - 23080:8080
+        networks:
+            - deploy_test_zone
+
+networks:
+    deploy_test_zone:
+        driver: bridge
